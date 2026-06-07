@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>WHITE X | Premium Fintech Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- QR Code Generator Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050505;
+      font-family: 'Inter', 'Space Grotesk', sans-serif;
+      color: #eef5ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a15; }
+    ::-webkit-scrollbar-thumb { background: #00ffff66; border-radius: 10px; }
+
+    /* ========== REDESIGNED LOGIN PAGE STYLES (PREMIUM FINTECH) ========== */
+    .login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+      background: radial-gradient(circle at 20% 30%, #0a0a15, #000000);
+    }
+
+    .login-card {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(12, 12, 20, 0.75);
+      backdrop-filter: blur(18px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 255, 255, 0.05) inset;
+      padding: 2rem 2rem 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .login-card:hover {
+      border-color: rgba(0, 255, 255, 0.4);
+      box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.15) inset;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      border-radius: 60px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #88ffff;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .neon-logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff, #00ffff, #bf4aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-subtitle {
+      font-size: 0.85rem;
+      color: #aaa;
+      font-weight: 400;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #bbb;
+      letter-spacing: 0.3px;
+    }
+
+    .input-field {
+      background: rgba(8, 8, 14, 0.7);
+      border: 1.5px solid #2a2a3a;
+      border-radius: 1rem;
+      padding: 0.85rem 1.2rem;
+      width: 100%;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 400;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input-field:focus {
+      border-color: #00ccff;
+      box-shadow: 0 0 0 3px rgba(0, 204, 255, 0.15);
+      background: rgba(12, 12, 20, 0.9);
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #7a7a9a;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover {
+      color: cyan;
+    }
+
+    .login-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .checkbox-label input {
+      accent-color: #00ccff;
+      width: 16px;
+      height: 16px;
+    }
+
+    .forgot-link {
+      color: #88aaff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .forgot-link:hover {
+      color: cyan;
+      text-decoration: underline;
+    }
+
+    .btn-login {
+      background: linear-gradient(95deg, #00ccff, #bf4aff);
+      border: none;
+      padding: 0.9rem 1rem;
+      border-radius: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 12px rgba(0, 204, 255, 0.2);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0, 204, 255, 0.3), 0 0 12px #bf4aff40;
+      background: linear-gradient(95deg, #00ddff, #d15eff);
+    }
+
+    .security-notice {
+      background: rgba(0, 20, 30, 0.4);
+      border-left: 3px solid #00ccff;
+      border-radius: 0.8rem;
+      padding: 0.8rem 1rem;
+      margin: 1.5rem 0 1rem;
+      font-size: 0.7rem;
+      color: #bbccff;
+    }
+
+    .security-notice i {
+      color: #00ffaa;
+      margin-right: 6px;
+    }
+
+    .small-legal {
+      font-size: 0.65rem;
+      color: #8899aa;
+      text-align: center;
+      margin: 1rem 0 0.5rem;
+      line-height: 1.4;
+    }
+
+    .login-footer {
+      margin-top: 1.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(0, 255, 255, 0.15);
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8a8aaa;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .login-footer span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .error-msg {
+      color: #ff6b8b;
+      font-size: 0.7rem;
+      margin-top: 6px;
+    }
+
+    /* ========== REST OF THE SITE (FULLY RESTORED HOME PAGE) ========== */
+    .glass-card {
+      background: rgba(12, 12, 20, 0.7);
+      backdrop-filter: blur(14px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.5), 0 0 12px rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(191, 74, 255, 0.5);
+      box-shadow: 0 25px 40px -12px rgba(0, 255, 255, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(95deg, #00ccff, #bf4aff);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 2.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 8px #00ffff77;
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 22px #bf4aff, 0 0 12px cyan;
+    }
+
+    @keyframes btnGlowPulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,255,255,0.8), 0 0 0 0 rgba(191,74,255,0.8); transform: scale(1); }
+      30% { box-shadow: 0 0 0 18px rgba(0,255,255,0.4), 0 0 0 12px rgba(191,74,255,0.4); transform: scale(1.02); }
+      100% { box-shadow: 0 0 0 30px rgba(0,255,255,0), 0 0 0 25px rgba(191,74,255,0); transform: scale(1); }
+    }
+
+    .btn-primary.pulse-glow {
+      animation: btnGlowPulse 0.8s ease-out forwards;
+    }
+
+    .btn-primary .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.7);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to { transform: scale(8); opacity: 0; }
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5,5,5,0.94);
+      backdrop-filter: blur(24px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .loading-card {
+      background: rgba(12,12,25,0.9);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      border: 1px solid rgba(0,255,255,0.5);
+      box-shadow: 0 0 50px rgba(0,255,255,0.2);
+      animation: floatGlow 2s infinite ease-in-out;
+      max-width: 380px;
+      width: 85%;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translateY(0px); box-shadow: 0 0 30px rgba(0,255,255,0.2); }
+      50% { transform: translateY(-8px); box-shadow: 0 0 55px rgba(0,255,255,0.5), 0 0 25px #bf4aff; }
+      100% { transform: translateY(0px); box-shadow: 0 0 30px rgba(0,255,255,0.2); }
+    }
+
+    .spinner-neon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.2rem;
+      border: 3px solid rgba(0,255,255,0.2);
+      border-top: 3px solid cyan;
+      border-right: 3px solid #bf4aff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 8px cyan;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #fff, cyan, #bf4aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .loading-sub {
+      font-size: 0.75rem;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #00ffff;
+      border-radius: 2rem;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      color: cyan;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #00ffff22;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    .badge {
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid #00ffff66;
+      backdrop-filter: blur(4px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ========== RESTORED HERO HOME PAGE WITH FLOATING CARDS ========== */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2rem 2rem 1.5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .hero-left {
+      flex: 1.2;
+      min-width: 280px;
+    }
+    .hero-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 420px;
+    }
+    .glow-rings {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,255,0.2), transparent);
+      filter: blur(25px);
+      animation: pulseRing 6s infinite ease-in-out;
+    }
+    .ring-1 { width: 280px; height: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(0,255,255,0.25), transparent); animation-delay: 0s; }
+    .ring-2 { width: 360px; height: 360px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(191,74,255,0.2), transparent); animation-delay: 2s; }
+    .ring-3 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(0,255,255,0.2), transparent); animation-delay: 4s; }
+    @keyframes pulseRing {
+      0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
+      50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+      100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
+    }
+
+    .premium-card-stack {
+      position: relative;
+      width: 320px;
+      height: 400px;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      z-index: 10;
+    }
+    .premium-card {
+      position: absolute;
+      width: 280px;
+      height: 380px;
+      border-radius: 1.8rem;
+      background: linear-gradient(145deg, #0f0f1a, #05050a);
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,255,255,0.2) inset, 0 0 15px rgba(0,255,255,0.1);
+      backdrop-filter: blur(4px);
+      transition: transform 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
+      overflow: hidden;
+    }
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+    }
+    .card-visa-front { top: 20px; left: 20px; z-index: 30; transform: translateZ(20px) rotateY(-2deg) rotateX(2deg); border-left: 3px solid #00ffff; animation: floatVisa 5s infinite ease-in-out; }
+    .card-master-mid { top: 60px; left: 60px; z-index: 20; transform: translateZ(5px) rotateY(-6deg) rotateX(4deg); border-left: 3px solid #bf4aff; animation: floatMaster 5s infinite ease-in-out 0.3s; }
+    .card-rupay-back { top: 100px; left: 100px; z-index: 10; transform: translateZ(-10px) rotateY(-10deg) rotateX(6deg); border-left: 3px solid #ffaa33; animation: floatRuPay 5s infinite ease-in-out 0.6s; }
+    @keyframes floatVisa { 0% { transform: translateZ(20px) rotateY(-2deg) rotateX(2deg) translateY(0px); } 50% { transform: translateZ(25px) rotateY(-3deg) rotateX(3deg) translateY(-8px); } 100% { transform: translateZ(20px) rotateY(-2deg) rotateX(2deg) translateY(0px); } }
+    @keyframes floatMaster { 0% { transform: translateZ(5px) rotateY(-6deg) rotateX(4deg) translateY(0px); } 50% { transform: translateZ(8px) rotateY(-7deg) rotateX(5deg) translateY(-6px); } 100% { transform: translateZ(5px) rotateY(-6deg) rotateX(4deg) translateY(0px); } }
+    @keyframes floatRuPay { 0% { transform: translateZ(-10px) rotateY(-10deg) rotateX(6deg) translateY(0px); } 50% { transform: translateZ(-7px) rotateY(-11deg) rotateX(7deg) translateY(-4px); } 100% { transform: translateZ(-10px) rotateY(-10deg) rotateX(6deg) translateY(0px); } }
+    .card-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.2rem 0; }
+    .card-chip { width: 40px; height: 32px; background: linear-gradient(135deg, #e6b800, #ffd966); border-radius: 8px; }
+    .card-body { padding: 1.5rem 1.2rem; }
+    .card-brand { font-size: 0.75rem; letter-spacing: 2px; color: #aaa; }
+    .card-title { font-size: 1rem; font-weight: 600; margin: 0.3rem 0; }
+    .member-badge { background: rgba(0,255,255,0.15); border-radius: 30px; padding: 0.2rem 0.8rem; font-size: 0.65rem; width: fit-content; backdrop-filter: blur(4px); }
+    .card-footer { position: absolute; bottom: 1rem; left: 1.2rem; right: 1.2rem; display: flex; justify-content: space-between; font-size: 0.7rem; color: #aaa; }
+    .feature-row { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .feature-chip { background: rgba(0,255,255,0.08); border-radius: 2rem; padding: 0.5rem 1rem; border: 1px solid cyan; }
+
+    /* Package section, support, footer, navbar, payment pages */
+    .packages-section { padding: 2rem 2rem 4rem 2rem; background: radial-gradient(circle at 30% 10%, #0a0a18, #000); }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 1rem; }
+    .tabs { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0 2rem 0; }
+    .tab-btn { background: rgba(20,20,40,0.8); border: 1px solid #2c2c44; border-radius: 3rem; padding: 0.7rem 1.8rem; font-weight: 600; cursor: pointer; color: #ccc; }
+    .tab-btn.active { background: linear-gradient(135deg, #00ffff22, #bf4aff22); border-color: cyan; color: cyan; box-shadow: 0 0 12px cyan; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    .package-card { background: rgba(10, 10, 18, 0.85); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.5rem; border: 1px solid rgba(0,255,255,0.2); }
+    .badge-stock { background: #00aa5522; border: 1px solid #00ffaa; color: #00ffaa; border-radius: 30px; padding: 0.2rem 0.8rem; font-size: 0.7rem; }
+    .support-section { padding: 4rem 2rem; text-align: center; }
+    .support-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
+    .support-card { background: rgba(12,12,22,0.7); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 1.8rem; width: 240px; cursor: pointer; transition: 0.2s; }
+    .support-card i { font-size: 2rem; color: cyan; }
+    .support-card:hover { transform: translateY(-5px); border-color: cyan; }
+    footer { border-top: 1px solid rgba(0,255,255,0.2); padding: 2rem; text-align: center; background: #010105; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; background: rgba(5,5,5,0.75); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,255,255,0.2); position: sticky; top: 0; z-index: 100; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #ddd; text-decoration: none; font-weight: 500; cursor: pointer; }
+    .nav-links a:hover { color: cyan; text-shadow: 0 0 5px cyan; }
+    .qr-container, .utr-container, .success-container { max-width: 550px; margin: 2rem auto; padding: 2rem; }
+    .qr-canvas-wrapper { display: flex; justify-content: center; margin: 1.5rem 0; }
+    canvas.qr-canvas { width: 220px; height: 220px; background: white; border-radius: 20px; padding: 8px; box-shadow: 0 0 20px cyan; }
+    .success-icon { font-size: 4rem; color: #00ffaa; text-shadow: 0 0 20px #00ffaa; }
+    @media (max-width: 850px) { .hero { flex-direction: column; text-align: center; } .navbar { flex-direction: column; gap: 1rem; } .premium-card-stack { transform: scale(0.9); margin: 0 auto; } }
+
+    /* ========== PREMIUM LIMIT & EXPIRY BOXES (exact match to reference image) ========== */
+    .package-card .limit-expiry-row {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0 18px 0;
+    }
+    .package-card .info-card-box {
+      flex: 1;
+      background: rgba(6, 6, 14, 0.85);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 10px 10px;
+      transition: all 0.2s;
+      backdrop-filter: blur(2px);
+      text-align: center;
+    }
+    .package-card .info-card-box .meta-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      color: #a0b3d9;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .package-card .info-card-box .meta-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+    }
+    /* consistent with image: both values are bright white, no extra cyan tint */
+    .package-card .info-card-box.limit-box .meta-value {
+      color: #ffffff;
+    }
+    /* card corners already premium rounded (1.5rem) */
+  </style>
+</head>
+<body id="appRoot"></body>
+
+<script>
+  // ---------- STATE ----------
+  let isLoggedIn = false;
+  let showWelcome = false;
+  let mainAppVisible = false;
+  let currentView = 'home';
+  let selectedPackage = null;
+
+  const packagesData = {
+    VISA: [
+      { price: 650, bin: "453291", expiry: "06/2029", bestSeller: false },
+      { price: 750, bin: "411111", expiry: "09/2029", bestSeller: false },
+      { price: 1000, bin: "478532", expiry: "11/2028", bestSeller: false },
+      { price: 1350, bin: "451182", expiry: "03/2030", bestSeller: true },
+      { price: 2000, bin: "489327", expiry: "12/2029", bestSeller: false },
+      { price: 2750, bin: "424256", expiry: "07/2030", bestSeller: false },
+      { price: 5000, bin: "465823", expiry: "02/2032", bestSeller: false }
+    ],
+    Mastercard: [
+      { price: 650, bin: "541234", expiry: "05/2030", bestSeller: false },
+      { price: 750, bin: "557890", expiry: "08/2029", bestSeller: false },
+      { price: 1000, bin: "523456", expiry: "11/2031", bestSeller: false },
+      { price: 1350, bin: "532178", expiry: "07/2030", bestSeller: true },
+      { price: 2000, bin: "548921", expiry: "12/2032", bestSeller: false },
+      { price: 2750, bin: "565432", expiry: "04/2031", bestSeller: false },
+      { price: 5000, bin: "589012", expiry: "09/2033", bestSeller: false }
+    ],
+    RuPay: [
+      { price: 650, bin: "652187", expiry: "08/2031", bestSeller: false },
+      { price: 750, bin: "608422", expiry: "11/2030", bestSeller: false },
+      { price: 1000, bin: "625990", expiry: "02/2032", bestSeller: false },
+      { price: 1350, bin: "643210", expiry: "03/2031", bestSeller: true },
+      { price: 2000, bin: "670011", expiry: "09/2032", bestSeller: false },
+      { price: 2750, bin: "689341", expiry: "06/2033", bestSeller: false },
+      { price: 5000, bin: "699988", expiry: "12/2034", bestSeller: false }
+    ]
+  };
+  let activeNetwork = "VISA";
+
+  function getUSDForPrice(inrPrice) {
+    const usdMap = {
+      650: 310,
+      750: 350,
+      1000: 450,
+      1350: 1100,
+      2000: 2750,
+      2750: 3000,
+      5000: 5000
+    };
+    return usdMap[inrPrice] || Math.round(inrPrice / 80);
+  }
+
+  function createRipple(event, element) {
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.position = 'absolute';
+    element.style.position = 'relative';
+    element.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  function showLoadingTransition(callback) {
+    let overlay = document.querySelector('.loading-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'loading-overlay';
+      overlay.innerHTML = `
+        <div class="loading-card">
+          <div class="spinner-neon"></div>
+          <div class="loading-text">Preparing Secure Payment...</div>
+          <div class="loading-sub">Please wait while we generate your payment session</div>
+          <div style="margin-top: 1rem; font-size: 0.7rem; color: #6a6a8a;"><i class="fas fa-lock"></i> 256-bit encrypted</div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.add('active');
+    setTimeout(() => {
+      if (callback) callback();
+      setTimeout(() => overlay.classList.remove('active'), 450);
+    }, 1800);
+  }
+
+  function handleBuyNowWithAnimation(event, btn, price, network, bin, expiry) {
+    event.stopPropagation();
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.classList.add('pulse-glow');
+    createRipple(event, btn);
+    btn.style.transform = 'scale(0.98)';
+    setTimeout(() => { btn.style.transform = ''; }, 150);
+    showLoadingTransition(() => {
+      selectedPackage = { price, network, bin, expiry };
+      currentView = 'qr_payment';
+      render();
+    });
+    setTimeout(() => {
+      btn.classList.remove('pulse-glow');
+      btn.disabled = false;
+    }, 2000);
+  }
+
+  function render() {
+    const root = document.getElementById('appRoot');
+    if (!root) return;
+    if (!isLoggedIn) {
+      root.innerHTML = renderLoginPage();
+      attachLoginEvents();
+    } else if (showWelcome) {
+      root.innerHTML = renderWelcomeScreen();
+      attachWelcomeEvents();
+    } else if (mainAppVisible) {
+      root.innerHTML = renderMainWebsite();
+      attachMainEvents();
+    }
+  }
+
+  function renderLoginPage() {
+    return `
+      <div class="login-container">
+        <div class="login-card">
+          <div class="login-header">
+            <div class="security-badge"><i class="fas fa-shield-alt"></i> SECURE SESSION ACTIVE</div>
+            <div class="neon-logo" style="font-size: 2.2rem;">WHITE X</div>
+            <p class="login-subtitle">Secure access to the WHITE X member portal</p>
+          </div>
+          <form id="loginForm">
+            <div class="input-group">
+              <label class="input-label">Email Address</label>
+              <input type="email" id="loginEmail" class="input-field" placeholder="member@whitex.com" required>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Password</label>
+              <div class="password-wrapper">
+                <input type="password" id="loginPassword" class="input-field" placeholder="Enter your secure password" required>
+                <i class="far fa-eye toggle-password" data-target="loginPassword"></i>
+              </div>
+            </div>
+            <div class="login-options">
+              <label class="checkbox-label"><input type="checkbox" id="rememberMe"> <span>Remember this device</span></label>
+              <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+            </div>
+            <div id="loginError" class="error-msg"></div>
+            <button type="submit" class="btn-login"><i class="fas fa-lock"></i> Sign In to Portal</button>
+          </form>
+          <div class="security-notice">
+            <i class="fas fa-shield-virus"></i> Secure Connection Protected by Advanced Encryption<br>
+            <span style="font-size:0.65rem;">Authorized members only. All access attempts are monitored and protected by secure authentication protocols.</span>
+          </div>
+          <div class="small-legal"><i class="fas fa-fingerprint"></i> Biometric & 2FA ready • Session timeout after inactivity</div>
+          <div class="login-footer">
+            <span><i class="far fa-copyright"></i> 2026 WHITE X. All Rights Reserved.</span>
+            <span><i class="fas fa-shield-alt"></i> Secure Member Access</span>
+            <span><i class="fas fa-lock"></i> Protected Connection</span>
+            <span><i class="fas fa-user-secret"></i> Privacy Protected</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function attachLoginEvents() {
+    const form = document.getElementById('loginForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        isLoggedIn = true;
+        showWelcome = true;
+        mainAppVisible = false;
+        render();
+      });
+    }
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+      icon.addEventListener('click', function() {
+        const target = this.getAttribute('data-target');
+        const input = document.getElementById(target);
+        if (input) {
+          const type = input.type === 'password' ? 'text' : 'password';
+          input.type = type;
+          this.classList.toggle('fa-eye');
+          this.classList.toggle('fa-eye-slash');
+        }
+      });
+    });
+    const forgot = document.getElementById('forgotLink');
+    if (forgot) forgot.addEventListener('click', (e) => { e.preventDefault(); alert('Password reset link sent to your registered email (demo).'); });
+  }
+
+  function renderWelcomeScreen() {
+    return `
+      <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="glass-card" style="padding: 2.5rem; text-align: center; max-width: 450px;">
+          <div style="font-size: 4rem; color: #00ffaa; margin-bottom: 1rem;"><i class="fas fa-check-circle"></i></div>
+          <div class="neon-logo" style="font-size: 2rem;">WHITE X</div>
+          <h2 style="margin: 1rem 0;">Welcome Back</h2>
+          <p>Preparing your secure environment...</p>
+          <div class="loading-progress-bar"><div class="loading-fill" id="loadingFill"></div></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function attachWelcomeEvents() {
+    const fill = document.getElementById('loadingFill');
+    if (fill) {
+      setTimeout(() => { fill.style.width = '100%'; }, 50);
+      setTimeout(() => {
+        showWelcome = false;
+        mainAppVisible = true;
+        currentView = 'home';
+        selectedPackage = null;
+        render();
+      }, 2100);
+    }
+  }
+
+  // PACKAGES SECTION: side-by-side LIMIT & EXPIRY boxes styled exactly like reference image
+  function renderPackagesSectionFull() {
+    const packages = packagesData[activeNetwork];
+    return `
+      <section class="packages-section">
+        <div class="section-title">Select Card Type & Package</div>
+        <div class="tabs" id="tabsContainer">
+          <button class="tab-btn ${activeNetwork === 'VISA' ? 'active' : ''}" data-network="VISA">VISA</button>
+          <button class="tab-btn ${activeNetwork === 'Mastercard' ? 'active' : ''}" data-network="Mastercard">Mastercard</button>
+          <button class="tab-btn ${activeNetwork === 'RuPay' ? 'active' : ''}" data-network="RuPay">RuPay</button>
+        </div>
+        <div class="cards-grid" id="packagesGrid">
+          ${packages.map(pkg => {
+            const usdAmount = getUSDForPrice(pkg.price);
+            return `
+            <div class="package-card glass-card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.8rem;">
+                <span class="badge-stock"><i class="fas fa-check-circle"></i> InStock</span>
+                <span class="badge-stock" style="background:#ffaa3322; border-color:#ffaa33;"><i class="fas fa-undo-alt"></i> Refundable</span>
+              </div>
+              <div style="font-size: 2rem; margin: 0.5rem 0;">${activeNetwork === 'VISA' ? '<i class="fab fa-cc-visa"></i>' : (activeNetwork === 'Mastercard' ? '<i class="fab fa-cc-mastercard"></i>' : '<i class="fas fa-rupee-sign"></i>')} ${activeNetwork}</div>
+              <div><strong>1 Card</strong> ${pkg.bestSeller ? '<span class="badge-stock" style="background:#ff44aa33; border-color:#ff44aa;"><i class="fas fa-star"></i> BEST SELLER</span>' : ''}</div>
+              
+              <!-- LIMIT & EXPIRY side-by-side boxes (exactly matching the picture layout) -->
+              <div class="limit-expiry-row">
+                <div class="info-card-box limit-box">
+                  <div class="meta-label">LIMIT</div>
+                  <div class="meta-value">$${usdAmount.toLocaleString()}</div>
+                </div>
+                <div class="info-card-box expiry-box">
+                  <div class="meta-label">EXPIRY</div>
+                  <div class="meta-value">${pkg.expiry}</div>
+                </div>
+              </div>
+
+              <div style="font-size: 1.8rem; font-weight: 700; color: cyan;">₹${pkg.price.toLocaleString()}</div>
+              <button class="btn-primary buy-now-btn" data-price="${pkg.price}" data-network="${activeNetwork}" data-bin="${pkg.bin}" data-expiry="${pkg.expiry}" style="width:100%; justify-content: center; margin-top: 1rem;">Buy Now <i class="fas fa-arrow-right"></i></button>
+            </div>
+          `}).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderMainWebsite() {
+    let mainContent = '';
+    if (currentView === 'home') mainContent = renderHomeSection();
+    else if (currentView === 'packages') mainContent = renderPackagesSectionFull();
+    else if (currentView === 'qr_payment') mainContent = renderQRPaymentPage();
+    else if (currentView === 'utr') mainContent = renderUTRPage();
+    else if (currentView === 'success') mainContent = renderSuccessPage();
+
+    const showNav = (currentView === 'home' || currentView === 'packages');
+    return `
+      ${showNav ? `
+      <nav class="navbar">
+        <div class="neon-logo">WHITE X</div>
+        <div class="nav-links">
+          <a class="nav-home">Home</a>
+          <a class="nav-packages">Packages</a>
+          <a class="nav-support">Contact</a>
+          <button id="telegramNavBtn" class="btn-outline" style="padding:0.4rem 1.2rem;"><i class="fab fa-telegram"></i> Telegram Support</button>
+          <button id="logoutMainBtn" class="btn-outline" style="padding:0.4rem 1.2rem;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </nav>
+      ` : ''}
+      <main>
+        ${mainContent}
+        ${(currentView === 'home' || currentView === 'packages') ? `
+          <section id="mainSupport" class="support-section">
+            <div class="section-title">Customer Support</div>
+            <p style="margin-bottom: 2rem;">Need help? Our support team is available 24/7.</p>
+            <div class="support-grid">
+              <div class="support-card" id="telegramSupportCard"><i class="fab fa-telegram"></i><h3>Telegram Support</h3><p>@WHITEXOFFICIAL7</p></div>
+              <div class="support-card" id="telegramGroupCard"><i class="fas fa-users"></i><h3>Telegram Group</h3><p>Join community →</p></div>
+              <div class="support-card" id="emailSupportCard"><i class="fas fa-envelope"></i><h3>Email Support</h3><p>whitexsupport@gmail.com</p></div>
+            </div>
+          </section>
+          <footer><div class="neon-logo" style="font-size: 1.5rem;">WHITE X</div><p style="margin-top: 1rem;">© 2025 WHITE X — Premium Digital Card Platform. All rights reserved.</p></footer>
+        ` : ''}
+      </main>
+    `;
+  }
+
+  function renderHomeSection() {
+    return `
+      <section class="hero">
+        <div class="hero-left">
+          <div class="badge"><i class="fas fa-shield-alt"></i> TRUSTED DIGITAL CARD PLATFORM</div>
+          <div class="neon-logo" style="font-size: 3rem; margin: 1rem 0;">WHITE X</div>
+          <h1 style="font-size: 2.2rem;">Your trusted platform for fast, secure and smooth digital services.</h1>
+          <p style="margin: 1rem 0;">Premium VISA, Mastercard & RuPay cards — instant processing, 24/7 support for power users.</p>
+          <button class="btn-primary explore-packages-btn"><i class="fas fa-bolt"></i> Explore Packages</button>
+          <div class="feature-row">
+            <div class="feature-chip"><i class="fas fa-lock"></i> 100% Secure</div>
+            <div class="feature-chip"><i class="fas fa-bolt"></i> Instant Access</div>
+            <div class="feature-chip"><i class="fas fa-credit-card"></i> Multiple Card Types</div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="glow-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+          <div class="premium-card-stack">
+            <div class="premium-card card-visa-front"><div class="card-header"><div class="card-chip"></div><i class="fab fa-cc-visa card-logo" style="color:#00ffff;"></i></div><div class="card-body"><div class="card-brand">PREMIUM MEMBER</div><div class="card-title">WHITE X</div><div class="member-badge">✦ Secure Access ✦</div></div><div class="card-footer"><span>VISA Infinite</span><span>CONTACTLESS</span></div></div>
+            <div class="premium-card card-master-mid"><div class="card-header"><div class="card-chip"></div><i class="fab fa-cc-mastercard card-logo" style="color:#bf4aff;"></i></div><div class="card-body"><div class="card-brand">WORLD ELITE</div><div class="card-title">MASTERCARD</div><div class="member-badge">✦ Global Access ✦</div></div><div class="card-footer"><span>Mastercard</span><span>PRIORITY PASS</span></div></div>
+            <div class="premium-card card-rupay-back"><div class="card-header"><div class="card-chip"></div><i class="fas fa-rupee-sign card-logo" style="color:#ffaa33;"></i></div><div class="card-body"><div class="card-brand">DOMINANT</div><div class="card-title">RuPay</div><div class="member-badge">✦ India First ✦</div></div><div class="card-footer"><span>RuPay Select</span><span>REWARDS+</span></div></div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function generateUPIQRCode(canvas, amount) {
+    const upiString = `upi://pay?pa=vishalxastro@fam&pn=WHITE%20X&am=${amount}&cu=INR`;
+    const qr = qrcode(0, 'M');
+    qr.addData(upiString);
+    qr.make();
+    const cellSize = 4;
+    const margin = 4;
+    const size = qr.getModuleCount() * cellSize + margin * 2;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#000000';
+    for (let row = 0; row < qr.getModuleCount(); row++) {
+      for (let col = 0; col < qr.getModuleCount(); col++) {
+        if (qr.isDark(row, col)) {
+          ctx.fillRect(col * cellSize + margin, row * cellSize + margin, cellSize, cellSize);
+        }
+      }
+    }
+    canvas.style.width = '220px';
+    canvas.style.height = '220px';
+  }
+
+  function renderQRPaymentPage() {
+    if (!selectedPackage) { setTimeout(() => { currentView = 'packages'; render(); }, 0); return '<div>Loading...</div>'; }
+    setTimeout(() => {
+      const canvas = document.getElementById('qrCanvas');
+      if (canvas) generateUPIQRCode(canvas, selectedPackage.price);
+    }, 50);
+    return `
+      <div class="qr-container glass-card">
+        <button class="btn-outline" id="backToPackagesFromQR" style="margin-bottom:1.2rem;"><i class="fas fa-arrow-left"></i> Back to Packages</button>
+        <div style="text-align: center;"><span class="badge" style="background:#00ffaa22;"><i class="fas fa-shield-alt"></i> SCAN & PAY</span></div>
+        <h2 style="margin: 1rem 0; text-align: center;">QR Payment</h2>
+        <div class="qr-canvas-wrapper">
+          <canvas id="qrCanvas" class="qr-canvas" width="220" height="220"></canvas>
+        </div>
+        <div style="background: #0c0c16; border-radius: 1.2rem; padding: 1.2rem; margin: 1rem 0;">
+          <p><i class="fas fa-credit-card"></i> <strong>Package: ${selectedPackage.network}</strong> — ₹${selectedPackage.price}</p>
+          <p><i class="fas fa-qrcode" style="color:cyan"></i> Open any UPI app (GooglePay, PhonePe, Paytm, BHIM) and scan this QR code.</p>
+          <p><strong>Amount to pay:</strong> <span style="color:#00ffaa;">₹${selectedPackage.price}</span></p>
+          <p style="margin-top: 8px;">✨ UPI ID: <span style="color:cyan;">vishalxastro@fam</span> &nbsp;|&nbsp; Virtual Account: 9870XXXX12</p>
+        </div>
+        <button id="completePaymentBtn" class="btn-primary" style="width:100%;"><i class="fas fa-check-double"></i> I Have Completed Payment</button>
+        <div class="mini-footer"><i class="fas fa-lock"></i> 100% Secure Transaction</div>
+      </div>
+    `;
+  }
+
+  function renderUTRPage() {
+    if (!selectedPackage) { setTimeout(() => { currentView = 'packages'; render(); }, 0); return '<div></div>'; }
+    return `
+      <div class="utr-container glass-card">
+        <button class="btn-outline" id="backToQRFromUTR" style="margin-bottom:1.2rem;"><i class="fas fa-arrow-left"></i> Back to QR Payment</button>
+        <h2 style="text-align: center;">Submit Payment Details</h2>
+        <p style="margin: 0.5rem 0; text-align: center;">Amount Paid: <strong style="color:#00ffaa;">₹${selectedPackage.price}</strong></p>
+        <div style="margin: 1.5rem 0;">
+          <label>UTR Number / Transaction ID</label>
+          <input type="text" id="utrInput" class="input-field" placeholder="Enter 12-digit UTR Number" maxlength="12" autocomplete="off" inputmode="numeric" style="width:100%;">
+          <div id="utrError" class="error-msg"></div>
+          <p style="font-size: 0.7rem; margin-top: 10px;">Note: Your order will be processed only after UTR verification. You'll receive your card within 24-72 hours.</p>
+        </div>
+        <button id="submitUtrBtn" class="btn-primary" style="width:100%;"><i class="fas fa-check-circle"></i> Submit & Confirm Order</button>
+      </div>
+    `;
+  }
+
+  function renderSuccessPage() {
+    if (!selectedPackage) { setTimeout(() => { currentView = 'packages'; render(); }, 0); return '<div></div>'; }
+    return `
+      <div class="success-container glass-card" style="text-align: center;">
+        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+        <h2 style="color: #00ffaa;">Payment Successful!</h2>
+        <p>Your payment has been verified and order is confirmed</p>
+        <div style="background: rgba(0,255,255,0.1); border-radius: 1rem; padding: 1rem; margin: 1.5rem 0;">
+          <div><strong>CARD TYPE</strong><br> ${selectedPackage.network}</div>
+          <div><strong>QUANTITY</strong><br> 1Card</div>
+          <div><strong>AMOUNT</strong><br> ₹${selectedPackage.price}</div>
+        </div>
+        <div class="badge" style="background:#00ffaa22; margin:0.5rem auto;"><i class="fas fa-clock"></i> Delivery Timeline: 24 to 72 Hours</div>
+        <p>Your card will be delivered via Telegram. Thank you for choosing <strong>WHITE X</strong>.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+          <button class="btn-outline" id="contactSupportSuccessBtn" style="border-color:#bf4aff;">Contact Support</button>
+          <button class="btn-primary" id="orderAnotherSuccessBtn" style="background: #ffffff22;">Order Another Card</button>
+        </div>
+        <div class="mini-footer" style="margin-top: 1.5rem;"><i class="fas fa-headset"></i> 24/7 Support available</div>
+      </div>
+    `;
+  }
+
+  function attachMainEvents() {
+    document.querySelectorAll('.nav-home').forEach(el => el.addEventListener('click', () => { currentView = 'home'; selectedPackage = null; render(); }));
+    document.querySelectorAll('.nav-packages').forEach(el => el.addEventListener('click', () => { currentView = 'packages'; selectedPackage = null; render(); }));
+    document.querySelectorAll('.nav-support').forEach(el => el.addEventListener('click', () => document.getElementById('mainSupport')?.scrollIntoView({ behavior: 'smooth' })));
+    document.querySelectorAll('.explore-packages-btn').forEach(btn => btn.addEventListener('click', () => { currentView = 'packages'; render(); }));
+
+    if (currentView === 'packages') {
+      document.querySelectorAll('.tab-btn').forEach(tab => {
+        tab.addEventListener('click', () => { activeNetwork = tab.getAttribute('data-network'); render(); });
+      });
+      document.querySelectorAll('.buy-now-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const price = parseInt(btn.getAttribute('data-price'));
+          const network = btn.getAttribute('data-network');
+          const bin = btn.getAttribute('data-bin');
+          const expiry = btn.getAttribute('data-expiry');
+          handleBuyNowWithAnimation(e, btn, price, network, bin, expiry);
+        });
+      });
+    }
+
+    if (currentView === 'qr_payment') {
+      const backBtn = document.getElementById('backToPackagesFromQR');
+      if (backBtn) backBtn.addEventListener('click', () => { currentView = 'packages'; selectedPackage = null; render(); });
+      const completeBtn = document.getElementById('completePaymentBtn');
+      if (completeBtn) completeBtn.addEventListener('click', () => { currentView = 'utr'; render(); });
+    }
+
+    if (currentView === 'utr') {
+      const backToQR = document.getElementById('backToQRFromUTR');
+      if (backToQR) backToQR.addEventListener('click', () => { currentView = 'qr_payment'; render(); });
+      const submitUtr = document.getElementById('submitUtrBtn');
+      if (submitUtr) {
+        submitUtr.addEventListener('click', () => {
+          const utrVal = document.getElementById('utrInput')?.value.trim().replace(/\D/g, '');
+          const errorSpan = document.getElementById('utrError');
+          if (!utrVal || utrVal.length !== 12) {
+            errorSpan.innerText = `UTR must be exactly 12 digits (you've entered ${utrVal?.length || 0})`;
+            return;
+          }
+          errorSpan.innerText = '';
+          currentView = 'success';
+          render();
+        });
+      }
+    }
+
+    if (currentView === 'success') {
+      const orderAnother = document.getElementById('orderAnotherSuccessBtn');
+      if (orderAnother) orderAnother.addEventListener('click', () => { currentView = 'packages'; selectedPackage = null; render(); });
+      const contactSupport = document.getElementById('contactSupportSuccessBtn');
+      if (contactSupport) contactSupport.addEventListener('click', () => window.open('https://t.me/WHITEXOFFICIAL7', '_blank'));
+    }
+
+    const logoutBtn = document.getElementById('logoutMainBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', () => { isLoggedIn = false; showWelcome = false; mainAppVisible = false; render(); });
+    const openTelegram = () => window.open('https://t.me/WHITEXOFFICIAL7', '_blank');
+    const telegramNav = document.getElementById('telegramNavBtn');
+    if (telegramNav) telegramNav.addEventListener('click', openTelegram);
+    const telegramCard = document.getElementById('telegramSupportCard');
+    if (telegramCard) telegramCard.addEventListener('click', openTelegram);
+    const telegramGroup = document.getElementById('telegramGroupCard');
+    if (telegramGroup) telegramGroup.addEventListener('click', openTelegram);
+    const emailCard = document.getElementById('emailSupportCard');
+    if (emailCard) emailCard.addEventListener('click', () => window.location.href = 'mailto:whitexsupport@gmail.com');
+  }
+
+  render();
+</script>
+</html>
